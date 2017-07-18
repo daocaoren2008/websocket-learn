@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="clock">
+
+</div>
+<script>
+    <!--webSocke 没有跨域问题-->
+    var socket = new WebSocket('ws://localhost:8080');
+    //    onopen是浏览器的事件
+    socket.onopen = function () {
+        console.log('链接成功');
+        socket.send('打开链接');
+    };
+    socket.onmessage = function (event) {
+//        event.data事件对象的data属性就是消息内容
+//        console.log(event.data)
+        document.querySelector('#clock').innerHTML = event.data
+    }
+</script>
+</body>
+</html>
